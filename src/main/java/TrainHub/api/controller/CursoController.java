@@ -27,7 +27,7 @@ public class CursoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastroCurso(@Valid @RequestBody DadosCadastroCurso dto, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity cadastrar(@Valid @RequestBody DadosCadastroCurso dto, UriComponentsBuilder uriComponentsBuilder) {
 
         Long codigo = repository.cadastrar(dto);
 

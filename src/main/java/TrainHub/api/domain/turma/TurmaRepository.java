@@ -89,21 +89,6 @@ public class TurmaRepository extends BaseRepository<Turma> {
         return jdbcTemplate.queryForObject(sql, getRowMapper(), parametros.toArray());
     }
 
-    public Page<Turma> listarTurmaPorCurso (Long curso_id, Pageable pageable) {
-        String sqlCount = "SELECT COUNT(*) FROM turma WHERE curso_id = ?";
-
-        Long total = jdbcTemplate.queryForObject(sqlCount, Long.class, curso_id);
-
-        String sqlData = "SELECT * FROM turma WHERE curso_id = ? ORDER BY inicio LIMIT ? OFFSET ?";
-
-        List<Turma> lista = jdbcTemplate.query(sqlData, getRowMapper(),
-                curso_id,
-                pageable.getPageSize(),
-                pageable.getOffset());
-
-        return new PageImpl<>(lista, pageable, total);
-    }
-
     public List<DadosDetalhamentoTurmaComQtd> listarTurmasPorCursoComQtd(Long cursoId) {
         String sql = """
             SELECT t.*, COUNT(tp.funcionario_id) as quantidade_funcionarios

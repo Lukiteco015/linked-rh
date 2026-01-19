@@ -62,7 +62,6 @@ public class TurmaService {
 
     public List<DadosDetalhamentoTurmaComQtd> buscarTurmasPorCurso(Long cursoId) {
         cursoRepository.buscarPorId(cursoId);
-
         return repository.listarTurmasPorCursoComQtd(cursoId);
     }
 
